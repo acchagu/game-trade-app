@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ゲームソフト売買表</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+<section id="home" class="screen active">
+  <img class="hero" src="game-hero.png" alt="ゲームをする3人">
+  <h1>ゲームソフト売買表</h1>
+  <p class="sub">買って、遊んで、売って、記録する。</p>
+  <div class="summary">
+    <h2><span id="year"></span>年 ゲーム収支</h2>
+    <div><span>購入総額</span><b id="buyTotal">0円</b></div>
+    <div><span>売却総額</span><b id="sellTotal">0円</b></div>
+    <div><span>実質支出</span><b id="netTotal">0円</b></div>
+  </div>
+  <button class="primary" onclick="show('form')">ゲームを記録する</button>
+  <button onclick="show('bonusForm')">まとめ売りボーナスを記録</button>
+  <button onclick="show('list');renderList();renderBonusList()">記録を見る</button>
+</section>
+
+<section id="form" class="screen">
+  <div class="head"><button onclick="show('home');updateSummary()">←</button><h2>ゲームを記録</h2></div>
+  <form id="gameForm">
+    <label>ゲームタイトル<input id="title" required></label>
+    <div class="field"><b>機種</b><div id="platformBtns" class="grid three"></div><input id="platformOther" class="hidden" placeholder="その他の機種"></div>
+    <label>購入日<input id="buyDate" type="date" required></label>
+    <label>購入価格<input id="buyPrice" type="number" min="0" required></label>
+    <div class="field"><b>購入場所</b><div id="buyPlaceBtns" class="grid"></div><input id="buyPlaceOther" class="hidden" placeholder="その他の購入場所"></div>
+    <div class="sep"><b>売却情報</b><small>まだ売っていない場合は空欄でOK</small></div>
+    <label>売却日<input id="sellDate" type="date"></label>
+    <label>売却価格<input id="sellPrice" type="number" min="0" value="0"></label>
+    <div class="field"><b>売却場所</b><div id="sellPlaceBtns" class="grid two"></div><input id="sellPlaceOther" class="hidden" placeholder="その他の売却場所"></div>
+    <div class="calc"><div>売却価格 <b id="calcSell">0円</b></div><div>実質負担額 <b id="calcNet">0円</b></div></div>
+    <button class="primary" type="submit">保存する</button>
+  </form>
+</section>
+
+
+<section id="bonusForm" class="screen">
+  <div class="head"><button onclick="show('home');updateSummary()">←</button><h2>まとめ売りボーナス</h2></div>
+  <form id="bonusFormEl">
+    <label>売却日<input id="bonusDate" type="date" required></label>
+
+    <div class="field">
+      <b>売却場所</b>
+      <div id="bonusPlaceBtns" class="grid two"></div>
+      <input id="bonusPlaceOther" class="hidden" placeholder="その他の売却場所">
+    </div>
+
+    <label>対象ゲーム
+      <input id="bonusGames" placeholder="例：ゲームA、ゲームB、ゲームC">
+    </label>
+
+    <label>まとめ売りボーナス総額
+      <input id="bonusTotalInput" type="number" min="0" required placeholder="2000">
+    </label>
+
+    <button class="primary" type="submit">ボーナスを保存する</button>
+  </form>
+</section>
+
+<section id="list" class="screen">
+  <div class="head"><button onclick="show('home');updateSummary()">←</button><h2>記録</h2></div>
+  <div id="count"></div>
+  <div id="records"></div>
+
+  <div class="bonus-list-title">まとめ売りボーナス</div>
+  <div id="bonusCount"></div>
+  <div id="bonusRecords"></div>
+</section>
+</main>
+<script src="app.js"></script>
+</body></html>
