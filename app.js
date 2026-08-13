@@ -64,7 +64,7 @@ function resetGameForm(){
   $("gameForm").reset();
   editingId=null;
   platform=buyPlace=sellPlace="";
-  $("sellPrice").value=0;
+  $("sellPrice").value="";
   ["platformOther","buyPlaceOther","sellPlaceOther"].forEach(id=>$(id).classList.add("hidden"));
   $("formTitle").textContent="ゲームを記録";
   $("gameSaveBtn").textContent="保存する";
